@@ -3,6 +3,7 @@ package tschipp.fakename;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -53,6 +54,12 @@ public class FakeName
 	{
 		performFakenameOperation(player, fakename, operation);
 		FakeName.network.send(PacketDistributor.ALL.noArg(), new FakeNamePacket(fakename, player.getEntityId(), operation));
+	}
+
+	public static void setFakeName(PlayerEntity player, String fakename) {
+		CompoundNBT tag = player.getPersistentData();
+		tag.putString("fakename", fakename);
+		FakeName.sendPacket(player, fakename, 0);
 	}
 
 	public static void performFakenameOperation(PlayerEntity player, String fakename, int operation)

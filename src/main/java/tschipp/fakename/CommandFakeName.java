@@ -70,14 +70,14 @@ public class CommandFakeName
 								Commands.argument("target", EntityArgument.players())
 								.requires(src -> src.hasPermissionLevel(Config.SERVER.commandPermissionLevelAll.get()))
 								.then(
-										Commands.argument("fakename", StringArgumentType.string())
+										Commands.argument("fakename", StringArgumentType.greedyString())
 										.executes((cmd) -> {
 											return handleSetname(cmd.getSource(), EntityArgument.getPlayers(cmd, "target"), StringArgumentType.getString(cmd, "fakename"));
 										})
 								)
 						)
 						.then(
-								Commands.argument("fakename", StringArgumentType.string())
+								Commands.argument("fakename", StringArgumentType.greedyString())
 								.requires(src -> src.hasPermissionLevel(Config.SERVER.commandPermissionLevelSelf.get()))
 								.executes((cmd) -> {
 									return handleSetname(cmd.getSource(), Collections.singleton(cmd.getSource().asPlayer()), StringArgumentType.getString(cmd, "fakename"));
