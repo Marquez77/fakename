@@ -59,6 +59,12 @@ public class FakeName
        
     }
 
+    public static void setFakeName(Player player, String fakename) {
+        CompoundTag tag = player.getPersistentData();
+        tag.putString("fakename", fakename);
+        FakeName.sendPacket(player, fakename, 0);
+    }
+
     public static void sendPacket(Player player, String fakename, int operation)
     {
         performFakenameOperation(player, fakename, operation);

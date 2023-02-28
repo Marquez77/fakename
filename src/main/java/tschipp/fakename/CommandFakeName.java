@@ -64,7 +64,7 @@ public class CommandFakeName {
                 .then(
                         literal("set")
                         .then(
-                                Commands.argument("fakename", StringArgumentType.string())
+                                Commands.argument("fakename", StringArgumentType.greedyString())
                                         .executes((cmd) -> {
                                             return handleSetname(cmd.getSource(), Collections.singleton(cmd.getSource().getPlayerOrException()), StringArgumentType.getString(cmd, "fakename"));
                                         })
@@ -73,7 +73,7 @@ public class CommandFakeName {
                                 Commands.argument("target", EntityArgument.players())
                                 .requires(src -> src.hasPermission(Config.SERVER.commandPermissionLevelAll.get()))
                                 .then(
-                                        Commands.argument("fakename", StringArgumentType.string())
+                                        Commands.argument("fakename", StringArgumentType.greedyString())
                                         .executes((cmd) -> {
                                             return handleSetname(cmd.getSource(),EntityArgument.getPlayers(cmd, "target"),StringArgumentType.getString(cmd,"fakename"));
                                                 })
